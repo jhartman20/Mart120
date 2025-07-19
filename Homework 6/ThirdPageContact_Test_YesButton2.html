@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Third Page</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: brown;
+            background-color: bisque;
+        }
+
+        h1 {
+            color: blue;
+            font-size: 12px;
+        }
+
+        .error {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Me</h1>
+    <form id="contactForm" action="#">
+        <p>First Name: <input type="text" id="fName"><br></p>
+        <p>Last Name: <input type="text" id="lName"><br></p>
+        <p>Email Address: <input type="text" id="email"><br></p>
+
+        <h2>Do you agree to be contacted by me?</h2>
+        <input type="checkbox" name="contact" value="No" id="noContact"> No<br>
+        <input type="checkbox" name="contact" value="Yes" id="yesContact"> Yes<br><br>
+
+        <button type="submit" id="btnSubmit" class="btn btn-primary">Submit My Info</button>
+    </form>
+
+    <br>
+    <a href="file:///C:/Users/jdega/JillianHartman.html">Go to Home Page</a><br>
+    <a href="C:/Users/jdega/OneDrive/Desktop/Homework 6/SecondPageStory.html">Short Story</a>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("fName").focus();
+
+            document.getElementById("contactForm").addEventListener("submit", function (event) {
+                let isValid = true;
+
+                const fields = ["fName", "lName", "email"];
+                fields.forEach(function (id) {
+                    const input = document.getElementById(id);
+                    if (input.value.trim() === "") {
+                        input.classList.add("error");
+                        isValid = false;
+                    } else {
+                        input.classList.remove("error");
+                    }
+                });
+
+                const yesCheckbox = document.querySelector('input[name="contact"][value="Yes"]');
+                if (!yesCheckbox.checked) {
+                    alert("You must agree to be contacted by checking 'Yes'.");
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    event.preventDefault(); // Prevent form from submitting
+                }
+            });
+        };
+    </script>
+</body>
+</html>
